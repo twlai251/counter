@@ -4,35 +4,65 @@ class Counter extends Component{
   constructor(){
     super();
     this.state = {
-      count:0,
+      count:0, text: 'Count by 1',
     }
   }
 
-
-  //this is where we are going to put out methods
+  //incrementing by 1 or 2
   increment = () => {
-    if(this.state.count >= 20)
-    {
-      this.setState({counter: 20});
-    }
 
-    else
-    {
-      this.setState({
-        count: this.state.count + 1,
-      });
+    if (this.state.text == "Count by 1") {
+      if (this.state.count >= 19) {
+        this.setState({
+          count: 20,
+        });
+      }
+      else {
+        this.setState({
+          count: this.state.count + 1,
+        });
+      }
+    }
+    else {
+      if (this.state.count >= 19) {
+        this.setState({
+          count: 20,
+        });
+      }
+      else {
+        this.setState({
+          count: this.state.count + 2,
+        });
+      }
     }
   }
 
-  //Decrement
+  //decrementing by 1 or 2
   decrement = () => {
-    if(this.state.count <= 0){
-      this.setState({counter: 0});
+
+    if (this.state.text == "Count by 1") {
+      if (this.state.count >= 1) {
+        this.setState({
+          count: this.state.count - 1,
+        });
+      }
+      else {
+        this.setState({
+          count: 0,
+        });
+      }
     }
-    else{
-      this.setState({
-        count: this.state.count - 1,
-      });
+    else {
+      if (this.state.count <= 1) {
+        this.setState({
+          count: 0,
+        });
+      }
+      else {
+        this.setState({
+          count: this.state.count - 2,
+        });
+      }
     }
   }
 
@@ -43,6 +73,19 @@ class Counter extends Component{
     })
   }
 
+  //count by 2
+  onClickButton = () => {
+   if (this.state.text == "Count by 1") {
+     this.setState({
+       text: 'Count by 2',
+     });
+   }
+   else{
+     this.setState({
+       text: 'Count by 1',
+     });
+   }
+ }
 
   render(){
     return(
@@ -56,6 +99,7 @@ class Counter extends Component{
           <button type="button" onClick={this.increment}> Increment</button>
           <button type="button"onClick={this.decrement}> Decrement</button>
           <button type="button"onClick={this.clearButton}> Clear</button>
+          <button type="button"onClick={this.onClickButton}>{this.state.text}</button>
 
         </div>
 
